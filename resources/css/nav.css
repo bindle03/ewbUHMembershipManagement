@@ -1,6 +1,7 @@
 .navbar {
   background-color: #f9f9f9;
-  color: blue; /* Changed text color to blue */
+  color: blue;
+  /* Changed text color to blue */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -8,7 +9,8 @@
 }
 
 .logo {
-  height: 70px; /* Adjust the height of the logo as needed */
+  height: 70px;
+  /* Adjust the height of the logo as needed */
 }
 
 .nav-links {
@@ -23,7 +25,8 @@
 }
 
 .nav-links li a {
-  color: blue; /* Changed link color to blue */
+  color: blue;
+  /* Changed link color to blue */
   text-decoration: none;
 }
 

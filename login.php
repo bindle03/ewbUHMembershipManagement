@@ -25,20 +25,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <link rel="stylesheet" href="resources\css\signup.css">
 </head>
+
 <body>
-<div class="container">
-  <form method="post">
-      <label for="pw"><b>Password</b></label>
-      <input id="pw" type="password" name="pass"><br/>
-      <input type="submit" value="Login">
-  </form>
-  <p class="error-message"><?= htmlentities($message); ?></p>
-</div>
+    <div class="container">
+        <form method="post">
+            <label for="pw"><b>Password</b></label>
+            <input id="pw" type="password" name="pass"><br />
+            <input type="submit" value="Login">
+        </form>
+        <p class="error-message">
+            <?= htmlentities($message); ?>
+        </p>
+    </div>
 </body>
+
 </html>
