@@ -1,6 +1,6 @@
 <?php
-include 'resources\static\nav.php';
-require_once "private\pdo.php";
+include 'nav.php';
+require_once "pdo.php";
 $message = '';
 if (isset($_POST['e_name']) && isset($_POST['e_type']) && isset($_POST['e_date'])) {
   if (($_POST['e_name']) == '' || ($_POST['e_type']) == 0 || ($_POST['e_date']) == '') {

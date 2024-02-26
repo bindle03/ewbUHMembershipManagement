@@ -1,7 +1,7 @@
 <?php
 session_start(); //for password
-include 'resources\static\nav.php';
-include 'private\pass.php';
+include 'nav.php';
+include 'pass.php';
 $message = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

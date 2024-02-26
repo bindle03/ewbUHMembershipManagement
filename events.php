@@ -1,8 +1,8 @@
 <?php
 session_start();
-require_once "private\pdo.php";
-include 'resources\static\nav.php';
-include 'private\pass.php';
+require_once "pdo.php";
+include 'nav.php';
+include 'pass.php';
 $stmt = $pdo->query("SELECT event_id, event_name, event_date FROM meetings");
 ?>
 

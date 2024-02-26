@@ -1,8 +1,8 @@
 <?php
 # function to add new member after a form is submitted
 session_start();
-include 'resources\static\nav.php';
-require_once "private\pdo.php";
+include 'nav.php';
+require_once "pdo.php";
 $message = '';
 if (isset($_POST['uh_id']) && isset($_POST['first_name']) && isset($_POST['last_name'])) {
   if (($_POST['uh_id']) == '' || ($_POST['first_name']) == '' || ($_POST['last_name']) == '') {
