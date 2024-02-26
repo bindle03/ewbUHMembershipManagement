@@ -1,10 +1,13 @@
 <?php
-// for individual event attendance
-session_start();
-include 'resources\static\nav.php';
-require_once "private\pdo.php";
-$message = '';
-if (isset($_POST['uh_id'])) {
+// this is a php template for individual event attendance (use GET method to get different unique id of each event)
+session_start(); // for password
+include 'nav.php'; // navigation bar
+require_once "pdo.php"; // SQL handling request
+
+$message = ''; 
+
+// UH ID look-up query
+if (isset($_POST['uh_id'])) { 
   if (($_POST['uh_id']) == '') {
     $message = '<p style="color:red">Please type in your UH ID</p>'; // check if there is input or not
   } else { // if uh_id is submitted
@@ -21,8 +24,8 @@ if (isset($_POST['uh_id'])) {
       $row = $dum_stmt->fetch(PDO::FETCH_ASSOC);
       $member_id = $row['member_id']; // retrieve member_id
 
-      $sql = "INSERT INTO event_details (event_id, member_id, attended) VALUES (:event_id, :member_id, :attended);
-                UPDATE ";
+      $sql = "INSERT INTO event_details (event_id, member_id, attended) VALUES (:event_id, :member_id, :attended);";
+      
       // insert attendance for looked-up UH ID
       $stmt = $pdo->prepare($sql);
       $stmt->execute(
@@ -63,7 +66,7 @@ if (isset($_POST['uh_id'])) {
         echo "<tr><td>";
         echo ($row['first_name']) . ' ' . ($row['last_name']);
         echo "</td><td>";
-        echo ($row['attended']);
+        echo ($row['attended'] ? "Yes" : "No");
         echo "</td></tr>\n";
       }
       echo "</table>\n";

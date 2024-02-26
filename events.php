@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once "private\pdo.php";
 include 'resources\static\nav.php';
 include 'private\pass.php';
@@ -17,7 +18,6 @@ $stmt = $pdo->query("SELECT event_id, event_name, event_date FROM meetings");
 
 <body>
   <?php
-  session_start();
   if (!isset($_SESSION['pass']) || $_SESSION['pass'] !== $stored_hash) {
     die("Hey, where's your password?");
   }
@@ -46,5 +46,4 @@ $stmt = $pdo->query("SELECT event_id, event_name, event_date FROM meetings");
     </p>
   </div>
 </body>
-
 </html>

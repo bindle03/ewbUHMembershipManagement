@@ -1,6 +1,6 @@
 <?php
-include 'resources\static\nav.php';
 session_start();
+include 'resources\static\nav.php';
 $_SESSION['pass'] = '';
 ?>
 
