@@ -116,3 +116,21 @@ input[type="button"]:hover {
   flex: 1;
   margin-right: 10px;
 }
+
+.btn {
+  background-color: red;
+  border: none;
+  color: white;
+  padding: 5px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 20px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.green {
+  background-color: #199319;
+}

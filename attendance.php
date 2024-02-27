@@ -21,20 +21,12 @@ if (isset($_POST['uh_id'])) {
 
       $message = '<p style="color:green">Updated</p>'; // update message
 
-      $row = $dum_stmt->fetch(PDO::FETCH_ASSOC);
-      $member_id = $row['member_id']; // retrieve member_id
-
-      $sql = "INSERT INTO event_details (event_id, member_id, attended) VALUES (:event_id, :member_id, :attended);";
+      $sql = "UPDATE event_details INNER JOIN members ON event_details.member_id = members.member_id
+              SET event_details.attended = 1 WHERE members.uh_id = " . $uh_id;
       
-      // insert attendance for looked-up UH ID
-      $stmt = $pdo->prepare($sql);
-      $stmt->execute(
-        array(
-          ':event_id' => $_GET['id'], // from the GET method
-          ':member_id' => $member_id,
-          ':attended' => 1
-        )
-      );
+      // update attendance for looked-up UH ID
+      $stmt = $pdo->query($sql);
+
     } else { // UH ID not found
       $message = '<p style="color:red">UH ID Not Found</p>'; // update message
     }
@@ -60,19 +52,19 @@ if (isset($_POST['uh_id'])) {
                            FROM event_details JOIN members JOIN meetings
                            ON members.member_id = event_details.member_id AND
                               meetings.event_id = event_details.event_id
-                           WHERE meetings.event_id = " . $_SESSION['id'] . " AND event_details.attended = 1");
+                           WHERE meetings.event_id = " . $_SESSION['id']); // query to fork the current attendance table
       echo '<table border="1">' . "\n";
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         echo "<tr><td>";
         echo ($row['first_name']) . ' ' . ($row['last_name']);
         echo "</td><td>";
-        echo ($row['attended'] ? "Yes" : "No");
+        echo ($row['attended'] ? "X" : " ");
         echo "</td></tr>\n";
       }
       echo "</table>\n";
       ?>
   </div>
-  <div class="form-container">
+  <div class="form-container"> <!-- form to submit uh id query-->
     <form method="post">
       <label for="uhid"><b>UH ID</b></label>
       <input id="uhid" type="text" name="uh_id"><br />
@@ -80,6 +72,8 @@ if (isset($_POST['uh_id'])) {
         <input type="button" onclick="location.href='newMember.php'; return false;" value="New Member?">
       </p>
     </form>
+    <p><a href='generateAttendance.php?id=<?= $_SESSION['id'] ?>' class='btn green'>Generate Attendance Table</a></p>
+    <!-- call for generate attendance file to generate initial attendance value -->
     <?php echo ($message) ?>
   </div>
 </body>
