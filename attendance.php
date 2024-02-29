@@ -22,7 +22,7 @@ if (isset($_POST['uh_id'])) {
       $message = '<p style="color:green">Updated</p>'; // update message
 
       $sql = "UPDATE event_details INNER JOIN members ON event_details.member_id = members.member_id
-              SET event_details.attended = 1 WHERE members.uh_id = " . $uh_id;
+              SET event_details.attended = 1 WHERE members.uh_id = " . $uh_id . " AND event_details.event_id = " . $_SESSION['id'];
       
       // update attendance for looked-up UH ID
       $stmt = $pdo->query($sql);
@@ -54,8 +54,13 @@ if (isset($_POST['uh_id'])) {
                               meetings.event_id = event_details.event_id
                            WHERE meetings.event_id = " . $_SESSION['id'] . " ORDER BY event_details.attended DESC"); // query to fork the current attendance table
       echo '<table border="1">' . "\n";
+      echo "<tr><td>UH ID</td>";
+      echo "<td>Name</td>";
+      echo "<td>Attended</td></tr>";
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         echo "<tr><td>";
+        echo ($row['uh_id']);
+        echo "</td><td>";
         echo ($row['first_name']) . ' ' . ($row['last_name']);
         echo "</td><td>";
         echo ($row['attended'] ? "X" : " ");

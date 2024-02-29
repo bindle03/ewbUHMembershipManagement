@@ -134,3 +134,7 @@ input[type="button"]:hover {
 .green {
   background-color: #199319;
 }
+
+td {
+  text-align: center;
+}

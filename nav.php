@@ -11,12 +11,11 @@
 <body>
   <nav class="navbar">
     <div class="logo-container">
-      <a href="index.php"><img src="resources\images\logo.png" alt="Logo" class="logo"></a>
+      <a href="events.php"><img src="resources\images\logo.png" alt="Logo" class="logo"></a>
     </div>
     <ul class="nav-links">
-      <li><a href="index.php">Home</a></li>
-      <li><a href="about.php">About</a></li>
-      <li><a href="contact.php">Contact</a></li>
+      <li><a href="events.php">Home</a></li>
+      <li><a href="index.php">Log Out</a></li>
     </ul>
   </nav>
 </body>
