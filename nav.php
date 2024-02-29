@@ -14,7 +14,7 @@
       <a href="events.php"><img src="resources\images\logo.png" alt="Logo" class="logo"></a>
     </div>
     <ul class="nav-links">
-      <li><a href="events.php">Home</a></li>
+      <li><a href="events.php">Events List</a></li>
       <li><a href="index.php">Log Out</a></li>
     </ul>
   </nav>
