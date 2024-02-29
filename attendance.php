@@ -52,7 +52,7 @@ if (isset($_POST['uh_id'])) {
                            FROM event_details JOIN members JOIN meetings
                            ON members.member_id = event_details.member_id AND
                               meetings.event_id = event_details.event_id
-                           WHERE meetings.event_id = " . $_SESSION['id']); // query to fork the current attendance table
+                           WHERE meetings.event_id = " . $_SESSION['id'] . " ORDER BY event_details.attended DESC"); // query to fork the current attendance table
       echo '<table border="1">' . "\n";
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         echo "<tr><td>";

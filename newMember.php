@@ -9,14 +9,16 @@ if (isset($_POST['uh_id']) && isset($_POST['first_name']) && isset($_POST['last_
     $message = '<p style="color:red">Please fill in all the information</p>';
   } else {
     $message = '<p style="color:green">Submitted</p>';
-    $sql = "INSERT INTO members (uh_id, first_name, last_name, point) VALUES (:uh_id, :first_name, :last_name, :point)";
+    $sql = "INSERT INTO members (uh_id, first_name, last_name, point) VALUES (:uh_id, :first_name, :last_name, :point);
+            INSERT INTO event_details (event_id, member_id, attended) VALUES(:event_id, LAST_INSERT_ID(), 1)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(
       array(
         ':uh_id' => $_POST['uh_id'],
         ':first_name' => $_POST['first_name'],
         ':last_name' => $_POST['last_name'],
-        ':point' => 0
+        ':point' => 0,
+        ':event_id' => $_SESSION['id']
       )
     );
   }
