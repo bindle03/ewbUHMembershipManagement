@@ -13,12 +13,20 @@ if (isset($_GET['id'])) {
 
     // SQL query that sets the status 
     // to 1 to indicate activation. 
-    $sql = "INSERT INTO event_details (event_id, member_id, attended) SELECT " . $event_id . ", member_id, 0 FROM members";
+    if ($event_id != 0) {
 
+        $sql = "INSERT INTO event_details (event_id, member_id, attended) SELECT " . $event_id . 
+            ", member_id, 0 FROM members WHERE 1 > (SELECT COUNT(*) FROM event_details WHERE event_id = " . $event_id . " AND member_id = members.member_id)";
+        $href = 'location: attendance.php?id=' . $event_id;
+    } else {
+        $sql = "INSERT INTO event_details (event_id, member_id, attended) SELECT event_id, member_id, 0 
+                FROM members JOIN meetings WHERE 1 > (SELECT COUNT(*) FROM event_details WHERE event_id = meetings.event_id AND member_id = members.member_id)";
+        $href = 'location: masterAttendance.php';
+    }
     // Execute the query 
     $stmt = $pdo->query($sql);
 }
 
 // Go back to course-page.php 
-header('location: attendance.php?id=' . $event_id);
+header($href);
 ?>

@@ -54,9 +54,9 @@ if (isset($_POST['uh_id'])) {
                               meetings.event_id = event_details.event_id
                            WHERE meetings.event_id = " . $_SESSION['id'] . " ORDER BY event_details.attended DESC"); // query to fork the current attendance table
       echo '<table border="1">' . "\n";
-      echo "<tr><td>UH ID</td>";
-      echo "<td>Name</td>";
-      echo "<td>Attended</td></tr>";
+      echo "<tr><th>UH ID</td>";
+      echo "<th>Name</th>";
+      echo "<th>Attended</th></tr>";  
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
         echo "<tr><td>";
         echo ($row['uh_id']);

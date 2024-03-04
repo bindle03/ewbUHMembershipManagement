@@ -1,9 +1,9 @@
 <?php
-session_start();
-require_once "pdo.php";
-include 'nav.php';
-include 'pass.php';
-$stmt = $pdo->query("SELECT event_id, event_name, event_date FROM meetings");
+  session_start();
+  require_once "pdo.php";
+  include 'nav.php';
+  include 'pass.php';
+  $stmt = $pdo->query("SELECT event_id, event_name, event_date FROM meetings ORDER BY event_date DESC");
 ?>
 
 <!DOCTYPE html>

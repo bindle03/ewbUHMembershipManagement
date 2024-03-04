@@ -15,6 +15,7 @@
     </div>
     <ul class="nav-links">
       <li><a href="events.php">Events List</a></li>
+      <li><a href="masterAttendance.php">Attendance</a></li>
       <li><a href="index.php">Log Out</a></li>
     </ul>
   </nav>
