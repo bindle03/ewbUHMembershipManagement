@@ -2,6 +2,10 @@
     session_start();
     require_once "pdo.php";
     include 'nav.php';
+    include 'pass.php';
+    if (!isset($_SESSION['pass']) || $_SESSION['pass'] !== $stored_hash) {
+        die("Hey, where's your password?");
+    }
     $stmt1 = $pdo->query("SELECT first_name, last_name FROM members ORDER BY first_name");
     $stmt2 = $pdo->query("SELECT event_id, event_name FROM meetings ORDER BY event_date");
 ?>
