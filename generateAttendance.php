@@ -15,11 +15,11 @@ if (isset($_GET['id'])) {
     // to 1 to indicate activation. 
     if ($event_id != 0) {
 
-        $sql = "INSERT INTO event_details (event_id, member_id, attended) SELECT " . $event_id . 
-            ", member_id, 0 FROM members WHERE 1 > (SELECT COUNT(*) FROM event_details WHERE event_id = " . $event_id . " AND member_id = members.member_id)";
+        $sql = "INSERT INTO event_details (event_id, member_id, attended, point) SELECT " . $event_id . 
+            ", member_id, 0, 0 FROM members WHERE 1 > (SELECT COUNT(*) FROM event_details WHERE event_id = " . $event_id . " AND member_id = members.member_id)";
         $href = 'location: attendance.php?id=' . $event_id;
     } else {
-        $sql = "INSERT INTO event_details (event_id, member_id, attended) SELECT event_id, member_id, 0 
+        $sql = "INSERT INTO event_details (event_id, member_id, attended, point) SELECT event_id, member_id, 0, 0 
                 FROM members JOIN meetings WHERE 1 > (SELECT COUNT(*) FROM event_details WHERE event_id = meetings.event_id AND member_id = members.member_id)";
         $href = 'location: masterAttendance.php';
     }

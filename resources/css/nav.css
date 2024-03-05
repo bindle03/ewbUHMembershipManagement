@@ -25,11 +25,15 @@
 }
 
 .nav-links li a {
-  color: blue;
+  display:inline-block;
+  color: #3089f6;
   /* Changed link color to blue */
+  text-align: center;
+  padding: 20px 16px;
   text-decoration: none;
 }
 
 .nav-links li a:hover {
-  text-decoration: underline;
+  background-color: #3089f6;
+  color: white;
 }
