@@ -8,7 +8,7 @@ require_once "pdo.php";
 if (isset($_GET['id'])) {
 
     // Store the value from get to a  
-    // local variable "course_id" 
+    // local variable "event_id" 
     $event_id = $_GET['id'];
 
     // SQL query that sets the status 
@@ -27,6 +27,6 @@ if (isset($_GET['id'])) {
     $stmt = $pdo->query($sql);
 }
 
-// Go back to course-page.php 
+// Go back to the resoected pages 
 header($href);
 ?>

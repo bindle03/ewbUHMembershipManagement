@@ -21,11 +21,19 @@ if (isset($_POST['uh_id'])) {
 
       $message = '<p style="color:green">Updated</p>'; // update message
 
-      $sql = "UPDATE event_details INNER JOIN members ON event_details.member_id = members.member_id
-              SET event_details.attended = 1 WHERE members.uh_id = " . $uh_id . " AND event_details.event_id = " . $_SESSION['id'];
+      $sql = "UPDATE members INNER JOIN event_details ON event_details.member_id = members.member_id 
+              INNER JOIN meetings JOIN event_types ON meetings.event_type_id = event_types.event_type_id ON event_details.event_id = meetings.event_id
+              SET members.point = members.point + event_types.point
+              WHERE members.uh_id = " . $uh_id . " AND event_details.event_id = " . $_SESSION['id'] . ";
+
+              UPDATE event_details INNER JOIN members ON event_details.member_id = members.member_id SET event_details.attended = 1
+              WHERE members.uh_id = " . $uh_id . " AND event_details.event_id = " . $_SESSION['id'];
+
+              
       
       // update attendance for looked-up UH ID
       $stmt = $pdo->query($sql);
+      $stmt->closeCursor();
 
     } else { // UH ID not found
       $message = '<p style="color:red">UH ID Not Found</p>'; // update message
@@ -38,47 +46,77 @@ if (isset($_POST['uh_id'])) {
 <html>
 
 <head>
-  <link rel="stylesheet" href="resources\css\attendance.css">
+  <link rel="stylesheet" href="resources\css\table.css">
   <title>Attendance</title>
 </head>
 
+<?php
+  // for individual event attendance
+  $_SESSION['id'] = $_GET['id'];
+  $stmt = $pdo->query("SELECT members.uh_id, members.first_name, members.last_name, meetings.event_name, event_details.attended
+                            FROM event_details JOIN members JOIN meetings
+                            ON members.member_id = event_details.member_id AND
+                                meetings.event_id = event_details.event_id
+                            WHERE meetings.event_id = " . $_SESSION['id'] . " ORDER BY event_details.attended DESC"); // query to fork the current attendance table                   
+  $stmt2 = $pdo->query("SELECT event_name FROM meetings WHERE event_id = " . $_SESSION['id']);
+  $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
+?>
+
 <body>
-  <div class="container">
-    <table border="1">
-      <?php
-      // for individual event attendance
-      $_SESSION['id'] = $_GET['id'];
-      $stmt = $pdo->query("SELECT members.uh_id, members.first_name, members.last_name, meetings.event_name, event_details.attended
-                           FROM event_details JOIN members JOIN meetings
-                           ON members.member_id = event_details.member_id AND
-                              meetings.event_id = event_details.event_id
-                           WHERE meetings.event_id = " . $_SESSION['id'] . " ORDER BY event_details.attended DESC"); // query to fork the current attendance table
-      echo '<table border="1">' . "\n";
-      echo "<tr><th>UH ID</td>";
-      echo "<th>Name</th>";
-      echo "<th>Attended</th></tr>";  
-      while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-        echo "<tr><td>";
-        echo ($row['uh_id']);
-        echo "</td><td>";
-        echo ($row['first_name']) . ' ' . ($row['last_name']);
-        echo "</td><td>";
-        echo ($row['attended'] ? "X" : " ");
-        echo "</td></tr>\n";
-      }
-      echo "</table>\n";
-      ?>
+  <div class="heading">
+        <h1><?=$row2['event_name']?></h1>
+    </div>
+  <div class="outer-wrapper">
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <th></th>
+          <th>UH ID</th>
+          <th>Name</th>
+          <th>Attended</th>
+        </thead>
+        <tbody>
+        <?php 
+          $i = 0;
+          while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): 
+            $i++;
+        ?>
+          <tr>
+            <th>
+              <?= $i ?>
+            </th>
+
+            <td>
+                <?= $row['uh_id']?>
+            </td>
+            <td>
+                <?= $row['first_name'] . " " . $row['last_name']?> 
+            </td>
+            <td>
+                <?= $row['attended'] ? "X" : " "?>
+            </td>
+          
+          </tr>
+        <?php endwhile; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="button">
+    <a class='generator' href='generateAttendance.php?id=<?= $_SESSION['id'] ?>' class='btn green'>Generate Attendance Table</a>
+    <!-- call for generate attendance file to generate initial attendance value -->
+
+    <a class="newEvent" href="newMember.php" rel="nofollow noopener">New Member?</a>
   </div>
   <div class="form-container"> <!-- form to submit uh id query-->
     <form method="post">
       <label for="uhid"><b>UH ID</b></label>
-      <input id="uhid" type="text" name="uh_id"><br />
-      <p><input type="submit" value="Submit">
-        <input type="button" onclick="location.href='newMember.php'; return false;" value="New Member?">
-      </p>
+      <input id="uhid" type="text" name="uh_id">
+      <input type="submit" value="Submit">
+      <?php echo ($message) ?>
     </form>
-    <p><a href='generateAttendance.php?id=<?= $_SESSION['id'] ?>' class='btn green'>Generate Attendance Table</a></p>
-    <!-- call for generate attendance file to generate initial attendance value -->
-    <?php echo ($message) ?>
   </div>
+   
+     
+  
 </body>

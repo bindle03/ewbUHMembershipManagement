@@ -13,7 +13,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Event List</title>
-  <link rel="stylesheet" href="resources\css\events.css">
+  <link rel="stylesheet" href="resources\css\table.css">
 </head>
 
 <body>
@@ -23,27 +23,44 @@
   }
   $_SESSION['id'] = NULL;
   ?>
-  <div class="container">
-    <h2>Event List</h2>
-    <p>
-    <table>
-      <tr>
-        <th>Event Name</th>
-        <th>Event Date</th>
-      </tr>
-      <?php while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): ?>
-        <tr>
-          <td><a href="attendance.php?id=<?= $row['event_id'] ?>">
-              <?= $row['event_name'] ?>
-            </a></td>
-          <td>
-            <?= $row['event_date'] ?>
-          </td>
-        </tr>
-      <?php endwhile; ?>
-    </table></br>
-    <input type="button" onclick="location.href='newEvent.php'; return false;" value="New Event">
-    </p>
+  </div>
+
+  <div class="heading">
+    <h1>Event List</h1>
+  </div>
+  <div class="outer-wrapper">
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <th></th>
+          <th>Event</th>
+          <th>Date</th>
+        </thead>
+        <tbody>
+          <?php 
+            $i = 0;
+            while ($row = $stmt->fetch(PDO::FETCH_ASSOC)): 
+              $i++;
+          ?>
+            <tr>
+              <td> <?= $i ?>
+              <td>
+                  <a href="attendance.php?id=<?= $row['event_id'] ?>">
+                    <?= $row['event_name'] ?>
+                  </a>
+              </td>
+              <td>
+                  <?= $row['event_date'] ?>
+              </td>
+            </tr>
+          <?php endwhile; ?>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="button">
+    <a class="newEvent" href="newEvent.php" rel="nofollow noopener">Plan something new?</a>
   </div>
 </body>
 </html>
