@@ -53,8 +53,9 @@
     </table>
 </div>
 </div>
-<p><a href='generateAttendance.php?id=0' class='btn green'>Fix Format</a>
-</p>
+<div class="button">
+    <a class="newEvent" href="generateAttendance.php?id=0" rel="nofollow noopener">Fix Format</a>
+</div>
 <!-- call for generate attendance file to generate initial attendance value -->
 </body>
 

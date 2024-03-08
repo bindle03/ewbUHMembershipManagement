@@ -14,9 +14,10 @@ include 'pass.php';
 if (!isset($_SESSION['pass']) || $_SESSION['pass'] !== $stored_hash) {
     die("Hey, where's your password?");
 }
+update_to_member($pdo);
 $stmt = $pdo->query("SELECT * FROM members JOIN member_types ON members.member_type_id = member_types.member_type_id ORDER BY point DESC");
 
-update_to_member($pdo);
+
 
 ?>
 <!DOCTYPE html>
@@ -40,7 +41,7 @@ update_to_member($pdo);
                 <thead>
                     <th></th>
                     <th>Name</th>
-                    <th>Type</th>
+                    <th>Position</th>
                     <th>Point</th>
                 </thead>
                 <tbody>

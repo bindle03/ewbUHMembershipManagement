@@ -103,7 +103,7 @@ if (isset($_POST['uh_id'])) {
     </div>
   </div>
   <div class="button">
-    <a class='generator' href='generateAttendance.php?id=<?= $_SESSION['id'] ?>' class='btn green'>Generate Attendance Table</a>
+    <a class='generator' href='generateAttendance.php?id=<?= $_SESSION['id'] ?>'>Generate Attendance Table</a>
     <!-- call for generate attendance file to generate initial attendance value -->
 
     <a class="newEvent" href="newMember.php" rel="nofollow noopener">New Member?</a>
