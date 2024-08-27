@@ -1,19 +1,20 @@
 <?php
 session_start(); //for password
-include 'nav.php';
+include 'navForLogin.php';
 include 'pass.php';
 $message = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $salt = 'XyZzy12*_';
     if (empty($_POST['pass'])) {
-        $message = 'Password is required';
+        $message = 'Field is required';
     } else {
         $md5 = hash('md5', $salt . $_POST['pass']);
         $_SESSION['pass'] = $md5;
 
         if ($md5 === $stored_hash) {
-            header("Location: events.php");
+            $string = "Location: events.php";
+            header($string);
             exit();
         } else {
             $message = 'Incorrect Password';
@@ -37,7 +38,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <form method="post">
             <label for="pw"><b>Password</b></label>
             <input id="pw" type="password" name="pass"><br />
-            <input type="submit" value="Login">
+            <p><input type="submit" value="Login">
+            <input type="button" onclick="location.href='index.php'; return false;" value="Back" ></p>
         </form>
         <p class="error-message">
             <?= htmlentities($message); ?>

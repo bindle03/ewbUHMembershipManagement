@@ -49,7 +49,7 @@ if (isset($_POST['uh_id']) && isset($_POST['first_name']) && isset($_POST['last_
       <label for="lastName"><b>Last Name</b></label>
       <input id="lastName" type="text" name="last_name"><br />
       <p><input type="submit" value="Submit">
-        <input type="button" onclick="location.href='attendance.php?id=<?= $_SESSION['id'] ?>'; return false;"
+        <input type="button" onclick="location.href='events.php'; return false;"
           value="Back">
       </p>
     </form>

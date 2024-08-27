@@ -65,7 +65,7 @@ if (isset($_POST['uh_id'])) {
 <body>
   <div class="heading">
         <h1><?=$row2['event_name']?></h1>
-    </div>
+  </div>
   <div class="outer-wrapper">
     <div class="table-wrapper">
       <table>
@@ -105,8 +105,6 @@ if (isset($_POST['uh_id'])) {
   <div class="button">
     <a class='generator' href='generateAttendance.php?id=<?= $_SESSION['id'] ?>'>Generate Attendance Table</a>
     <!-- call for generate attendance file to generate initial attendance value -->
-
-    <a class="newEvent" href="newMember.php" rel="nofollow noopener">New Member?</a>
   </div>
   <div class="form-container"> <!-- form to submit uh id query-->
     <form method="post">

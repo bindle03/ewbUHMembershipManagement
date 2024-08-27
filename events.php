@@ -35,6 +35,7 @@
           <th></th>
           <th>Event</th>
           <th>Date</th>
+          <th>Attendance Taking Link</th>
         </thead>
         <tbody>
           <?php 
@@ -52,6 +53,11 @@
               <td>
                   <?= $row['event_date'] ?>
               </td>
+              <td>
+                  <a href="checkin.php?id=<?= $row['event_id'] ?>">
+                    Link
+                  </a>
+              </td>
             </tr>
           <?php endwhile; ?>
         </tbody>
@@ -61,6 +67,7 @@
 
   <div class="button">
     <a class="newEvent" href="newEvent.php" rel="nofollow noopener">Plan something new?</a>
+    <a class="newEvent" href="newMember.php" rel="nofollow noopener">New Member?</a>
   </div>
 </body>
 </html>
