@@ -14,9 +14,9 @@
       <a href="semester.php"><img src="resources\images\logo.png" alt="Logo" class="logo"></a>
     </div>
     <ul class="nav-links">
-      <li><a href="members.php">Members</a></li>
-      <li><a href="events.php">Events List</a></li>
-      <li><a href="masterAttendance.php">Attendance</a></li>
+      <li><a href="members.php?id=<?=$_GET['id']?>">Members</a></li>
+      <li><a href="events.php?id=<?= $_GET['id'] ?>">Events List</a></li>
+      <li><a href="masterAttendance.php?id=<?= $_GET['id'] ?>">Attendance</a></li>
       <li><a href="index.php">Log Out</a></li>
     </ul>
   </nav>

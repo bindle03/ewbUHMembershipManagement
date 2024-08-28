@@ -3,7 +3,9 @@
   require_once "pdo.php";
   include 'nav.php';
   include 'pass.php';
-  $stmt = $pdo->query("SELECT event_id, event_name, semester, event_date FROM semester JOIN meetings WHERE semester_id = " . $_GET['id'] . " ORDER BY event_date DESC");
+  $stmt = $pdo->query("SELECT event_id, event_name, event_date FROM semesters JOIN meetings WHERE semesters.semester_id = " . $_GET['id'] . " ORDER BY event_date DESC");
+  $stmt2 = $pdo->query("SELECT * FROM semesters WHERE semester_id = " . $_GET['id']);
+  $semester = $stmt2->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +28,7 @@
   </div>
 
   <div class="heading">
-    <h1>Event List - </h1>
+    <h1>Event List - <?=$semester['semester']?></h1>
   </div>
   <div class="outer-wrapper">
     <div class="table-wrapper">
