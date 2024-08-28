@@ -3,7 +3,7 @@
   require_once "pdo.php";
   include 'nav.php';
   include 'pass.php';
-  $stmt = $pdo->query("SELECT event_id, event_name, event_date FROM meetings ORDER BY event_date DESC");
+  $stmt = $pdo->query("SELECT event_id, event_name, semester, event_date FROM semester JOIN meetings WHERE semester_id = " . $_GET['id'] . " ORDER BY event_date DESC");
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +26,7 @@
   </div>
 
   <div class="heading">
-    <h1>Event List</h1>
+    <h1>Event List - </h1>
   </div>
   <div class="outer-wrapper">
     <div class="table-wrapper">
@@ -66,6 +66,7 @@
   </div>
 
   <div class="button">
+    <a class="newEvent" href="semester.php" rel="nofollow noopener">Back</a>
     <a class="newEvent" href="newEvent.php" rel="nofollow noopener">Plan something new?</a>
     <a class="newEvent" href="newMember.php" rel="nofollow noopener">New Member?</a>
   </div>
