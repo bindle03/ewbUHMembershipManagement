@@ -11,7 +11,7 @@
 <body>
   <nav class="navbar">
     <div class="logo-container">
-      <a href="events.php"><img src="resources\images\logo.png" alt="Logo" class="logo"></a>
+      <a href="semester.php"><img src="resources\images\logo.png" alt="Logo" class="logo"></a>
     </div>
     <ul class="nav-links">
       <li><a href="events.php">Events List</a></li>

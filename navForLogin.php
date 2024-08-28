@@ -9,11 +9,14 @@
 </head>
 
 <body>
-    <nav class="navbar">
-        <div class="logo-container">
-            <img src="resources\images\logo.png" alt="Logo" class="logo">
-        </div>
-    </nav>
+  <nav class="navbar">
+    <div class="logo-container">
+      <a href="semester.php"><img src="resources\images\logo.png" alt="Logo" class="logo"></a>
+    </div>
+    <ul class="nav-links">
+      <li><a href="index.php">Log Out</a></li>
+    </ul>
+  </nav>
 </body>
 
 </html>
