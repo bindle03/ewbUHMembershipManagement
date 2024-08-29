@@ -16,8 +16,10 @@ if (isset($_POST['submit'])) {
                             email = '$email', phone_number = '$phone_number' WHERE member_id = " . $_GET['member']);
     $stmt3 = $pdo->query("UPDATE semester_details SET member_type_id = '$member_type' WHERE member_id = " . $_GET['member']);
     if ($stmt2 || $stmt3) {
+        header("location: members.php?id=" . $_GET['id']);
         echo "<script> alert('Updated')</script>";
     }
+    
 }
 $stmt = $pdo->query("SELECT uh_id, first_name, last_name, semester_details.member_type_id, major, email, phone_number, member_point, semester 
                         FROM members JOIN semester_details JOIN semesters JOIN member_types 
@@ -113,7 +115,9 @@ $stmt = $pdo->query("SELECT uh_id, first_name, last_name, semester_details.membe
                         $stmt->closeCursor();
                         ?>
                     </tr>
-                    <?php endwhile; ?>
+                    <?php 
+                        endwhile; 
+                    ?>
                 </tbody>'
             </table>
         </div>

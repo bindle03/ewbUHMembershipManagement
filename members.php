@@ -56,7 +56,7 @@ $stmt = $pdo->query("SELECT members.member_id, uh_id, first_name, last_name, mem
                                 <?= $row['uh_id'] ?>
                             </td>
                             <td>
-                                <a href="edit_member.php?member=<?=$row['member_id']?>"><?= $row['first_name'] . " " . $row['last_name'] ?></a>                              
+                                <a href="edit_member.php?id=<?= $_GET['id'] ?>&amp;member=<?=$row['member_id']?>"><?= $row['first_name'] . " " . $row['last_name'] ?></a>                              
                             </td>
                             <td>
                                 <?= $row["member_type"]  ?>

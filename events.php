@@ -28,7 +28,7 @@
   </div>
 
   <div class="heading">
-    <h1>Event List - <?=$semester['semester']?></h1>
+    <h1><?= $semester['semester'] ?> - Events</h1>
   </div>
   <div class="outer-wrapper">
     <div class="table-wrapper">
