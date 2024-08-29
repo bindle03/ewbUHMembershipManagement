@@ -79,6 +79,9 @@ $stmt = $pdo->query("SELECT members.member_id, uh_id, first_name, last_name, mem
             </table>
         </div>
     </div>
+        <div class="button">
+        <a class="newEvent" href="semester.php" rel="nofollow noopener">Back</a>
+    </div>
 </body>
 
 </html>

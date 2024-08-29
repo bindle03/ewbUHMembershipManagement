@@ -54,6 +54,7 @@
 </div>
 </div>
 <div class="button">
+    <a class="newEvent" href="semester.php" rel="nofollow noopener">Back</a>
     <a class="newEvent" href="generateAttendance.php?id=0" rel="nofollow noopener">Fix Format</a>
 </div>
 <!-- call for generate attendance file to generate initial attendance value -->
