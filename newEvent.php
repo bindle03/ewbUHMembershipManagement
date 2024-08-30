@@ -8,14 +8,15 @@ if (isset($_POST['e_name']) && isset($_POST['e_type']) && isset($_POST['e_date']
   } else {
     $message = '<p style="color:green">Submitted</p>';
 
-    $sql = "INSERT INTO meetings (event_type_id, event_name, event_date) VALUES (:event_type_id, :event_name, :event_date)";
+    $sql = "INSERT INTO meetings (event_type_id, event_name, event_date, semester_id) VALUES (:event_type_id, :event_name, :event_date, :semester_id)";
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute(
       array(
         ':event_type_id' => $_POST['e_type'],
         ':event_name' => $_POST['e_name'],
-        ':event_date' => $_POST['e_date']
+        ':event_date' => $_POST['e_date'],
+        ':semester_id' => $_GET['semester_id']
       )
     );
   }

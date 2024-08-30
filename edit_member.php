@@ -16,8 +16,8 @@ if (isset($_POST['submit'])) {
                             email = '$email', phone_number = '$phone_number' WHERE member_id = " . $_GET['member']);
     $stmt3 = $pdo->query("UPDATE semester_details SET member_type_id = '$member_type' WHERE member_id = " . $_GET['member']);
     if ($stmt2 || $stmt3) {
-        header("location: members.php?id=" . $_GET['id']);
-        echo "<script> alert('Updated')</script>";
+        header("location: members.php?semester_id=" . $_GET['semester_id']);
+
     }
     
 }

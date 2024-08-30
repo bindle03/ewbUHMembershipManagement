@@ -6,7 +6,7 @@ include 'pass.php';
 $stmt = $pdo->query("SELECT members.member_id, uh_id, first_name, last_name, member_type, major, email, phone_number, member_point, semester 
                         FROM members JOIN semester_details JOIN semesters JOIN member_types 
                         ON members.member_id = semester_details.member_id AND semesters.semester_id = semester_details.semester_id 
-                        AND member_types.member_type_id = semester_details.member_type_id");
+                        AND member_types.member_type_id = semester_details.member_type_id WHERE semester_details.semester_id = " . $_GET['semester_id']);
 ?>
 
 <!DOCTYPE html>
@@ -56,7 +56,7 @@ $stmt = $pdo->query("SELECT members.member_id, uh_id, first_name, last_name, mem
                                 <?= $row['uh_id'] ?>
                             </td>
                             <td>
-                                <a href="edit_member.php?id=<?= $_GET['id'] ?>&amp;member=<?=$row['member_id']?>"><?= $row['first_name'] . " " . $row['last_name'] ?></a>                              
+                                <a href="edit_member.php?semester_id=<?= $_GET['semester_id'] ?>&amp;member=<?=$row['member_id']?>"><?= $row['first_name'] . " " . $row['last_name'] ?></a>                              
                             </td>
                             <td>
                                 <?= $row["member_type"]  ?>
