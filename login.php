@@ -1,6 +1,6 @@
 <?php
 session_start(); //for password
-include 'navFrontPage.php';
+include 'navBlank.php';
 include 'pass.php';
 $message = '';
 

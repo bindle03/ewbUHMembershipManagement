@@ -11,7 +11,7 @@
 <body>
   <nav class="navbar">
     <div class="logo-container">
-      <a href="index.php"><img src="resources\images\logo.png" alt="Logo" class="logo"></a>
+      <img src="resources\images\logo.png" alt="Logo" class="logo">
     </div>
   </nav>
 </body>
