@@ -15,8 +15,7 @@ if (isset($_POST['e_name']) && isset($_POST['e_type']) && isset($_POST['e_date']
       array(
         ':event_type_id' => $_POST['e_type'],
         ':event_name' => $_POST['e_name'],
-        ':event_date' => $_POST['e_date'],
-        ':semester_id'=> $_GET['id'],
+        ':event_date' => $_POST['e_date']
       )
     );
   }

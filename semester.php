@@ -44,7 +44,7 @@
             <tr>
               <td> <?= $i ?>
               <td>
-                  <a href="events.php?id=<?= $i ?>"><?= $row['semester']?></a>
+                  <a href="events.php?semester_id=<?= $i ?>"><?= $row['semester']?></a>
               </td>
               
             </tr>

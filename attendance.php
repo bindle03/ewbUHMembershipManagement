@@ -24,10 +24,10 @@ if (isset($_POST['uh_id'])) {
       $sql = "UPDATE members INNER JOIN event_details ON event_details.member_id = members.member_id 
               INNER JOIN meetings JOIN event_types ON meetings.event_type_id = event_types.event_type_id ON event_details.event_id = meetings.event_id
               SET members.point = members.point + event_types.point
-              WHERE members.uh_id = " . $uh_id . " AND event_details.event_id = " . $_SESSION['id'] . ";
+              WHERE members.uh_id = " . $uh_id . " AND event_details.event_id = " . $_SESSION['semester_id'] . ";
 
               UPDATE event_details INNER JOIN members ON event_details.member_id = members.member_id SET event_details.attended = 1
-              WHERE members.uh_id = " . $uh_id . " AND event_details.event_id = " . $_SESSION['id'];
+              WHERE members.uh_id = " . $uh_id . " AND event_details.event_id = " . $_SESSION['semester_id'];
 
               
       
@@ -52,13 +52,13 @@ if (isset($_POST['uh_id'])) {
 
 <?php
   // for individual event attendance
-  $_SESSION['id'] = $_GET['id'];
+  $_SESSION['semester_id'] = $_GET['semester_id'];
   $stmt = $pdo->query("SELECT members.uh_id, members.first_name, members.last_name, meetings.event_name, event_details.attended
                             FROM event_details JOIN members JOIN meetings
                             ON members.member_id = event_details.member_id AND
                                 meetings.event_id = event_details.event_id
-                            WHERE meetings.event_id = " . $_SESSION['id'] . " ORDER BY event_details.attended DESC"); // query to fork the current attendance table                   
-  $stmt2 = $pdo->query("SELECT event_name FROM meetings WHERE event_id = " . $_SESSION['id']);
+                            WHERE meetings.event_id = " . $_GET['event_id'] . " ORDER BY event_details.attended DESC"); // query to fork the current attendance table                   
+  $stmt2 = $pdo->query("SELECT event_name FROM meetings WHERE event_id = " . $_GET['event_id']);
   $row2 = $stmt2->fetch(PDO::FETCH_ASSOC);
 ?>
 
@@ -103,7 +103,7 @@ if (isset($_POST['uh_id'])) {
     </div>
   </div>
   <div class="button">
-    <a class='generator' href='generateAttendance.php?id=<?= $_SESSION['id'] ?>'>Generate Attendance Table</a>
+    <a class='generator' href='generateAttendance.php?event_id=<?=$_GET['event_id']?>&amp;semester_id=<?= $_SESSION['semester_id'] ?>'>Generate Attendance Table</a>
     <!-- call for generate attendance file to generate initial attendance value -->
   </div>
   <div class="form-container"> <!-- form to submit uh id query-->

@@ -5,7 +5,7 @@ include 'pass.php';
 require_once "pdo.php";
 $message = '';
 
-$event_stmt = $pdo->query("SELECT event_name FROM meetings WHERE event_id = " . $_GET['id']);
+$event_stmt = $pdo->query("SELECT event_name FROM meetings WHERE event_id = " . $_GET['event_id']);
 $row = $event_stmt->fetch(PDO::FETCH_ASSOC);
 
 
@@ -24,13 +24,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             $message = '<p style="color:green">Updated. Welcome back!</p>'; // update message
 
-            $sql = "UPDATE members INNER JOIN event_details ON event_details.member_id = members.member_id 
-                    INNER JOIN meetings JOIN event_types ON meetings.event_type_id = event_types.event_type_id ON event_details.event_id = meetings.event_id
-                    SET members.point = members.point + event_types.point
-                    WHERE members.uh_id = " . $uh_id . " AND event_details.event_id = " . $_GET['id'] . ";
+            $sql = "UPDATE event_details INNER JOIN members ON event_details.member_id = members.member_id SET event_details.attended = 1
+                    WHERE members.uh_id = " . $uh_id . " AND event_details.event_id = " . $_GET['event_id'];
 
-                    UPDATE event_details INNER JOIN members ON event_details.member_id = members.member_id SET event_details.attended = 1
-                    WHERE members.uh_id = " . $uh_id . " AND event_details.event_id = " . $_GET['id'];
+                
 
                     
             
@@ -73,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <div class="container" style="display: flex">
         <br/>
         <h3>UH ID not found, click ></h3>
-        <a class="newEvent" href="member_newMember.php?id=<?= $_GET['id']?>" rel="nofollow noopener">New Member</a>
+        <a class="newEvent" href="member_newMember.php?event_id=<?= $_GET['event_id'] ?>&amp;semester_id=<?= $_GET['semester_id']?>" rel="nofollow noopener">New Member</a>
     </div>
 </body>
 

@@ -3,8 +3,8 @@
   require_once "pdo.php";
   include 'nav.php';
   include 'pass.php';
-  $stmt = $pdo->query("SELECT event_id, event_name, event_date FROM meetings WHERE meetings.semester_id = " . $_GET['id'] . " ORDER BY event_date DESC");
-  $stmt2 = $pdo->query("SELECT * FROM semesters WHERE semester_id = " . $_GET['id']);
+  $stmt = $pdo->query("SELECT event_id, event_name, event_date FROM meetings WHERE semester_id = " . $_GET['semester_id'] . " ORDER BY event_date DESC");
+  $stmt2 = $pdo->query("SELECT * FROM semesters WHERE semester_id = " . $_GET['semester_id']);
   $semester = $stmt2->fetch(PDO::FETCH_ASSOC);
 ?>
 
@@ -48,7 +48,7 @@
             <tr>
               <td> <?= $i ?>
               <td>
-                  <a href="attendance.php?id=<?= $row['event_id'] ?>">
+                  <a href="attendance.php?event_id=<?= $row['event_id'] ?>&amp;semester_id=<?=$_GET['semester_id']?>">
                     <?= $row['event_name'] ?>
                   </a>
               </td>
@@ -56,7 +56,7 @@
                   <?= $row['event_date'] ?>
               </td>
               <td>
-                  <a href="checkin.php?id=<?= $row['event_id'] ?>">
+                  <a href="checkin.php?event_id=<?= $row['event_id']?>&amp;semester_id=<?= $_GET['semester_id'] ?>">
                     Link
                   </a>
               </td>
@@ -69,8 +69,8 @@
 
   <div class="button">
     <a class="newEvent" href="semester.php" rel="nofollow noopener">Back</a>
-    <a class="newEvent" href="newEvent.php?id=<?=$_GET['id']?>" rel="nofollow noopener">Plan something new?</a>
-    <a class="newEvent" href="newMember.php?id=<?=$_GET['id']?>" rel="nofollow noopener">New Member?</a>
+    <a class="newEvent" href="newEvent.php" rel="nofollow noopener">Plan something new?</a>
+    <a class="newEvent" href="newMember.php" rel="nofollow noopener">New Member?</a>
   </div>
 </body>
 </html>
