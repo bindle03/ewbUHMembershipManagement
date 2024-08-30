@@ -10,7 +10,7 @@ if (isset($_POST['uh_id']) && isset($_POST['first_name']) && isset($_POST['last_
   } else {
     $message = '<p style="color:green">Submitted</p>';
     $sql = "INSERT INTO members (uh_id, first_name, last_name, point) VALUES (:uh_id, :first_name, :last_name, :point);
-            INSERT INTO event_details (event_id, member_id, attended) VALUES(:event_id, LAST_INSERT_ID(), 1)";
+            INSERT INTO event_details (event_id, member_id, attended, semester_id) VALUES(:event_id, LAST_INSERT_ID(), 1, :semester_id)";
     $stmt = $pdo->prepare($sql);
     $stmt->execute(
       array(
@@ -18,9 +18,10 @@ if (isset($_POST['uh_id']) && isset($_POST['first_name']) && isset($_POST['last_
         ':first_name' => $_POST['first_name'],
         ':last_name' => $_POST['last_name'],
         ':point' => 0,
-        ':event_id' => $_SESSION['id']
+        ':event_id' => $_SESSION['id'],
+        'semester_id' => $_GET['semester_id']
       )
-    );
+      );
   }
   ;
 }
