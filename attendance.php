@@ -113,8 +113,5 @@ if (isset($_POST['uh_id'])) {
       <input type="submit" value="Submit">
       <?php echo ($message) ?>
     </form>
-  </div>
-   
-     
-  
+  </div>  
 </body>

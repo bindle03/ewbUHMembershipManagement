@@ -56,7 +56,7 @@ if (isset($_POST['e_name']) && isset($_POST['e_type']) && isset($_POST['e_date']
       <label for="edate"><b>Event Date</b></label> <!-- event date --> <!-- change to date picking -->
       <input id="edate" type="date" name="e_date"><br />
       <p><input type="submit" value="Submit">
-        <input type="button" onclick="location.href='events.php'; return false;" value="Back">
+        <input type="button" onclick="location.href='events.php?'; return false;" value="Back">
       </p>
     </form>
     <?php echo ($message) ?>
