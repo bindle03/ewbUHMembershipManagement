@@ -118,7 +118,7 @@ $stmt = $pdo->query("SELECT uh_id, first_name, last_name, semester_details.membe
                     <?php 
                         endwhile; 
                     ?>
-                </tbody>'
+                </tbody>
             </table>
         </div>
     </div>

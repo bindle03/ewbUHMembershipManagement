@@ -69,7 +69,7 @@
 
   <div class="button">
     <a class="newEvent" href="semester.php" rel="nofollow noopener">Back</a>
-    <a class="newEvent" href="newEvent.php" rel="nofollow noopener">Plan something new?</a>
+    <a class="newEvent" href="newEvent.php?semester_id=<?=$_GET['semester_id']?>" rel="nofollow noopener">Plan something new?</a>
     <a class="newEvent" href="newMember.php" rel="nofollow noopener">New Member?</a>
   </div>
 </body>
