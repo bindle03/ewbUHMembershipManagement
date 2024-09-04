@@ -122,6 +122,10 @@ $stmt = $pdo->query("SELECT uh_id, first_name, last_name, semester_details.membe
             </table>
         </div>
     </div>
+    </div>
+        <div class="button">
+        <a class="newEvent" href="members.php?semester_id=<?=$_GET['semester_id']?>" rel="nofollow noopener">Back</a>
+    </div>
 </body>
 
 </html>
