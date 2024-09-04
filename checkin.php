@@ -15,25 +15,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($_POST['uh_id'])) {
         $message = 'Enter your UH ID';
     } else if (isset($_POST['uh_id'])) {
-        $uh_id = $_POST['uh_id'];
     // check if uh_id exists or not
         $dum_stmt = $pdo->prepare("SELECT member_id FROM members WHERE uh_id = ? LIMIT 1");
-        $dum_stmt->execute([$uh_id]);
+        $dum_stmt->execute([$_POST['uh_id']]);
+        $row2 = $dum_stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($dum_stmt->rowCount() == 1) { // UH ID found
 
             $message = '<p style="color:green">Updated. Welcome back!</p>'; // update message
 
             $sql = "UPDATE event_details INNER JOIN members ON event_details.member_id = members.member_id SET event_details.attended = 1
-                    WHERE members.uh_id = " . $uh_id . " AND event_details.event_id = " . $_GET['event_id'];
+                    WHERE members.uh_id = :uh_id AND event_details.event_id = :event_id";
 
-                
-
-                    
-            
             // update attendance for looked-up UH ID
-            $stmt = $pdo->query($sql);
-            $stmt->closeCursor();
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(
+                array(
+                    ':uh_id' => $_POST['uh_id'],
+                    ':event_id' => $_GET['event_id'],
+                )
+            );
         } else { // UH ID not found
             $message = '<p style="color:red">UH ID Not Found</p>'; // update message
         }
