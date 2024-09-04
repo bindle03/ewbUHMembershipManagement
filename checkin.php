@@ -1,6 +1,6 @@
 <?php
 session_start(); //for password
-include 'navForLogin.php';
+include 'navBlank.php';
 include 'pass.php';
 require_once "pdo.php";
 $message = '';
