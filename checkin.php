@@ -21,12 +21,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $row2 = $dum_stmt->fetch(PDO::FETCH_ASSOC);
 
         if ($dum_stmt->rowCount() == 1) { // UH ID found
-
+            
             $message = '<p style="color:green">Updated. Welcome back!</p>'; // update message
 
             $sql = "UPDATE event_details INNER JOIN members ON event_details.member_id = members.member_id SET event_details.attended = 1
                     WHERE members.uh_id = :uh_id AND event_details.event_id = :event_id";
-
+            
             // update attendance for looked-up UH ID
             $stmt = $pdo->prepare($sql);
             $stmt->execute(

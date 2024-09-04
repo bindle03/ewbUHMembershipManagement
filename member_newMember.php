@@ -9,7 +9,7 @@ if (isset($_POST['uh_id']) && isset($_POST['first_name']) && isset($_POST['last_
         $message = '<p style="color:red">Please fill in all the information</p>';
     } else {
         $message = '<p style="color:green">Submitted</p>';
-        $sql = "INSERT INTO members (uh_id, first_name, last_name, major, email, phone_number, first_ewb) VALUES (:uh_id, :first_name, :last_name, :major, :email, :phone_number, :first_ewb);
+        $sql = "INSERT INTO members (uh_id, first_name, last_name, major, email, phone_number, first_ewb, semester_id) VALUES (:uh_id, :first_name, :last_name, :major, :email, :phone_number, :first_ewb, :semester_id);
             INSERT INTO event_details (event_id, member_id, attended, semester_id) VALUES(:event_id, LAST_INSERT_ID(), 1, :semester_id);
             INSERT INTO semester_details (semester_id, member_id, member_type_id, member_point) VALUES (:semester_id, LAST_INSERT_ID(), 5, 0)";
         $stmt = $pdo->prepare($sql);
