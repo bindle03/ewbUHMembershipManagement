@@ -7,7 +7,7 @@
         die("Hey, where's your password?");
     }
     $stmt1 = $pdo->query("SELECT first_name, last_name FROM members ORDER BY first_name");
-    $stmt2 = $pdo->query("SELECT event_id, event_name FROM meetings ORDER BY event_date");
+    $stmt2 = $pdo->query("SELECT event_id, event_name FROM meetings WHERE semester_id = " . $_GET['semester_id'] . " ORDER BY event_date");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,6 +54,7 @@
 </div>
 </div>
 <div class="button">
+    <a class="newEvent" href="semester.php" rel="nofollow noopener">Back</a>
     <a class="newEvent" href="generateAttendance.php?id=0" rel="nofollow noopener">Fix Format</a>
 </div>
 <!-- call for generate attendance file to generate initial attendance value -->

@@ -11,11 +11,8 @@
 <body>
   <nav class="navbar">
     <div class="logo-container">
-      <a href="semester.php"><img src="resources\images\logo.png" alt="Logo" class="logo"></a>
+      <img src="resources\images\logo.png" alt="Logo" class="logo">
     </div>
-    <ul class="nav-links">
-      <li><a href="index.php">Log Out</a></li>
-    </ul>
   </nav>
 </body>
 

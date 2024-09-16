@@ -1,6 +1,6 @@
 <?php
 session_start(); //for password
-include 'navForLogin.php';
+include 'navBlank.php';
 include 'pass.php';
 $message = '';
 
@@ -13,7 +13,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['pass'] = $md5;
 
         if ($md5 === $stored_hash) {
-            $string = "Location: events.php";
+            $string = "Location: semester.php";
             header($string);
             exit();
         } else {
