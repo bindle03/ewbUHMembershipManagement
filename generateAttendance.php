@@ -15,8 +15,16 @@ if (isset($_GET['id'])) {
     // to 1 to indicate activation. 
     if ($event_id != 0) {
 
-        $sql = "INSERT INTO event_details (event_id, member_id, attended) SELECT " . $event_id . 
-            ", member_id, 0 FROM members WHERE 1 > (SELECT COUNT(*) FROM event_details WHERE event_id = " . $event_id . " AND member_id = members.member_id)";
+        $sql = "INSERT INTO event_details (event_id, member_id, attended, semester_id) SELECT DISTINCT :event_id, e1.member_id, 0, e1.semester_id 
+                FROM event_details e1 WHERE e1.attended = 1 AND e1.semester_id = :semester_id
+                AND NOT EXISTS (
+                SELECT 1
+                FROM event_details e2
+                WHERE e2.event_id = :event_id
+                AND e2.member_id = e1.member_id
+                AND e2.semester_id = e1.semester_id
+                AND e2.attended = 1
+                )";
         $href = 'location: attendance.php?id=' . $event_id;
     } else {
         $sql = "INSERT INTO event_details (event_id, member_id, attended) SELECT event_id, member_id, 0
